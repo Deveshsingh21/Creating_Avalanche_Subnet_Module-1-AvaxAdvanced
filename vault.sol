@@ -65,7 +65,7 @@ contract Vault {
         }
 
         _mint(msg.sender, shares);
-        token.approve(msg.sender, address(this), _amount); // change 2
+        token.approve(msg.sender, address(this), _amount); 
         token.transferFrom(msg.sender, address(this), _amount);
     }
 
