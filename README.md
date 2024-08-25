@@ -7,7 +7,7 @@ https://www.loom.com/share/31abf5986a5b4493880ffa235c4cadac
 
 ## Contracts
 
-### ERC20 Interface
+### ERC20 Contract
 
 The `ERC20` interface defines the essential functions and events that any ERC20 token should implement. This interface ensures that the token will be interoperable with other contracts, wallets, and applications that expect these functions to be present.
 
