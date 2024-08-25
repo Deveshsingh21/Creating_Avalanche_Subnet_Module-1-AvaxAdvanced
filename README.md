@@ -2,6 +2,9 @@
 
 This project contains Solidity smart contracts for an ERC20 token and a Vault contract that allows users to deposit ERC20 tokens in exchange for shares and withdraw them by redeeming their shares. 
 
+# Video Explanation
+https://www.loom.com/share/31abf5986a5b4493880ffa235c4cadac
+
 ## Contracts
 
 ### ERC20 Interface
@@ -33,41 +36,33 @@ The `Vault` contract allows users to deposit ERC20 tokens in exchange for shares
 - **`deposit(uint _amount)`**: Allows users to deposit ERC20 tokens into the vault. The user receives shares proportional to the amount deposited.
 - **`withdraw(uint _shares)`**: Allows users to withdraw ERC20 tokens from the vault by redeeming their shares.
 
-**Internal Functions:**
 
-- **`_mint(address _to, uint _shares)`**: Mints new shares and assigns them to the specified address.
-- **`_burn(address _from, uint _shares)`**: Burns shares from the specified address.
 
 ## How It Works
 
-1. **Deposit Tokens:**
-   - Users can deposit a specified amount of ERC20 tokens into the vault.
-   - In return, they receive shares representing their ownership of the vault's token pool.
-   - If the vault is empty, the number of shares equals the amount deposited.
-   - If the vault already contains tokens, the number of shares is calculated based on the proportion of the deposit to the existing balance.
+1. **Install Avalanche CLI**
+   - Install avalanche-cli on your UNIX system.
+   - Copy ERC20.sol and Vault.sol from this repository.
+   - Create you custom subnet on Ubuntu Terminal.
+   - In a terminal, run: ```avalanche subnet create <any-subnet-name>```
+   - Select the desired options , go with defaults if new.
+   - Create chain ID (any positve digits).
+   - Deploy you subnet using the command ```avalanche subnet deploy <your-subnet-name>```.
+   - Details such as RPC URL , Funded address ,Network name, Chain ID ,Currency Symbol,private key will appear . Use these information to add a new network on Metamask .
+   - Switch to the newly created network and import new account using the private key dispalyed in the network information box.
 
-2. **Withdraw Tokens:**
-   - Users can redeem their shares for the underlying ERC20 tokens.
-   - The amount of tokens received is proportional to the number of shares being redeemed.
+2. **Deploy Contract:**
+   - In Remix IDE, select "Injected Web3" as the environment.
+   - Deploy ```ERC20.sol``` first.
+   - Then deploy ```Vault.sol```, using the deployed address of ```erc20.sol``` as the constructor parameter.
 
-3. **Approve and Transfer Mechanism:**
-   - The `deposit` function attempts to approve the vault contract to transfer the user's tokens, which is unconventional. Users typically need to approve the vault contract to transfer tokens on their behalf before calling `deposit`.
+3. **Mint and Deposit Tokens:**
+   - Mint some tokens to your address using the mint function in ```ERC20.sol```.
+   - Deposit some tokens and receive shares in return using ```Vault.sol```.
 
-## Example Use Cases
-
-- **Liquidity Pools**: The Vault contract can be used as a basic liquidity pool where users deposit ERC20 tokens and receive shares representing their contribution.
-- **Token Staking**: The contract can be adapted for staking scenarios where users deposit tokens in exchange for rewards, represented by shares.
-
-## Prerequisites
-
-- Solidity ^0.8.17
-- An ERC20-compliant token contract
-
-## Deployment
-
-1. Deploy the ERC20 token contract (if not already deployed).
-2. Deploy the Vault contract with the address of the ERC20 token contract.
-
+## Author
+Deveshsingh21 Metacrafters
+deveshsingh503@gmail.com
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
